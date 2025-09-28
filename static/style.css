@@ -112,3 +112,16 @@ body {
   text-align: center;
   padding: 20px;
 }
+#progressBar {
+  width: 80%;
+  height: 20px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+#progress {
+  width: 0%;
+  height: 100%;
+  background: orange;
+  border-radius: 10px;
+}
