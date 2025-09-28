@@ -1,3 +1,9 @@
+window.onload = () => {
+  const loadingOverlay = document.getElementById("loadingOverlay");
+  loadingOverlay.style.display = "none"; // скрываем overlay
+};
+
+
 const game = document.getElementById("game");
 const player = document.getElementById("player");
 const scoreEl = document.getElementById("score");
@@ -120,8 +126,4 @@ function spawnObstacle() {
 restartBtn.addEventListener("click", startGame);
 
 // старт игры сразу при загрузке
-
 startGame();
-
-
-
