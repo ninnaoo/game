@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff url("../static/bg.jpeg") repeat-x;
+  background-size: cover;
+}
+
+#gameContainer {
+  width: 100%;
+  height: 100%;
+}
+
+#game {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#player {
+  display: flex;
+  position: absolute;
+  bottom: 50px;
+  margin-left: 15%;
+  width: 20px;
+  height: 30%;
+  /*border: red solid 2px;*/
+  justify-content: center;
+  align-items: center;
+}
+
+#player img {
+  height: 100%;
+}
+
+.jump {
+  animation: jump 1s ease;
+}
+
+@keyframes jump {
+  0% { bottom: 50px; }
+  50% { bottom: 400px; }
+  100% { bottom: 50px; }
+}
+
+.obstacle {
+  position: absolute;
+  bottom: 50px;
+  right: -100px;
+  height: 60px;
+  animation: moveObstacle 2s linear forwards;
+  /*border: red solid 2px;*/
+}
+
+.obstacle img {
+  height: 100%;
+}
+
+@keyframes moveObstacle {
+  from { right: -100px; }
+  to { right: 110vw; }
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: white;
+}
+
+#message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  display: none;
+  background: rgba(0,0,0,0.8);
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#restartBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background: orange;
+  cursor: pointer;
+}
+
+#rotateOverlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  color: white;
+  font-size: 20px;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+}
