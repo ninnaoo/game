@@ -74,7 +74,7 @@ function spawnObstacle() {
   spawned++;
 
   const obstacle = document.createElement("img");
-  obstacle.src = "../star.png";
+  obstacle.src = "/../star.png";
   obstacle.className = "obstacle";
   game.appendChild(obstacle);
 
@@ -122,4 +122,5 @@ restartBtn.addEventListener("click", startGame);
 // старт игры сразу при загрузке
 
 startGame();
+
 
