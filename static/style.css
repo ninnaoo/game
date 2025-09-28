@@ -20,7 +20,7 @@ body {
 #player {
   display: flex;
   position: absolute;
-  bottom: 50px;
+  bottom: 15%;
   margin-left: 15%;
   width: 20px;
   height: 30%;
@@ -45,7 +45,7 @@ body {
 
 .obstacle {
   position: absolute;
-  bottom: 50px;
+  bottom: 15%;
   right: -100px;
   height: 60px;
   animation: moveObstacle 2s linear forwards;
