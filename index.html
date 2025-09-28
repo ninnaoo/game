@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Чиби-раннер 🎂</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <!-- Оверлей для поворота телефона -->
+  <div id="rotateOverlay">
+    <p>Пожалуйста, поверните телефон в горизонтальное положение 📱➡️</p>
+  </div>
+
+  <!-- Контейнер игры -->
+  <div id="gameContainer">
+    <div id="game">
+      <div id="player">
+        <img src="../static/toji.png">
+      </div>
+
+      <div id="score">Пройдено: 0</div>
+
+      <!-- Сообщение о победе/поражении и кнопка рестарта -->
+      <div id="message" style="display: none;">
+        <p id="messageText"></p>
+        <button id="restartBtn" style="display: none;">Начать сначала</button>
+      </div>
+    </div>
+
+    <!-- Музыка -->
+    <audio id="bgMusic" src="../static/Leaving Tonight - The Neighbourhood.mp3" autoplay loop muted></audio>
+  </div>
+
+  <script src="../static/script.js"></script>
+</body>
+</html>
