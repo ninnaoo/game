@@ -26,19 +26,6 @@ document.body.addEventListener("click", () => {
   music.play();
 }, { once: true });
 
-// проверка ориентации
-function checkOrientation() {
-  if (window.matchMedia("(orientation: landscape)").matches) {
-    rotateOverlay.style.display = "none";
-    gameContainer.style.display = "block";
-  } else {
-    rotateOverlay.style.display = "flex";
-    gameContainer.style.display = "none";
-  }
-}
-checkOrientation();
-window.addEventListener("orientationchange", checkOrientation);
-
 // прыжок
 function jump() {
   if (!player.classList.contains("jump")) {
@@ -96,7 +83,7 @@ function spawnObstacle() {
     ) {
       gameOver = true;
       message.style.display = "flex";
-      messageText.innerHTML = "😢 Ты проиграл!<br>Попробуй ещё раз!";
+      messageText.innerHTML = "проигрыш ((";
       restartBtn.style.display = "inline-block";
       clearInterval(checkCollision);
     }
