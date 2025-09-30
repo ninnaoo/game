@@ -1,7 +1,7 @@
 window.onload = () => {
-  const loading = document.getElementById("loading");
-  loading.style.display = "none"; // скрываем overlay
+  checkOrientationBeforeLoading()
 };
+const loading = document.getElementById("loading");
 const loadingOverlay = document.getElementById("loadingOverlay");
 const startBtn = document.getElementById("startBtn");
 
@@ -42,6 +42,7 @@ document.body.addEventListener("click", () => {
 function checkOrientationBeforeLoading() {
   if (window.innerWidth > window.innerHeight) {
     // горизонтально → показываем загрузку
+    loading.style.display = "none"; // скрываем overlay
     rotateOverlay.style.display = 'none';
     loadingOverlay.style.display = 'flex';
   } else {
@@ -156,6 +157,7 @@ startBtn.addEventListener('click', startGame);
 window.onload = () => {
   checkOrientationBeforeLoading();
 };
+
 
 
 
