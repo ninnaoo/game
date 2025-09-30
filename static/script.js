@@ -1,3 +1,8 @@
+window.onload = () => {
+  const loadingOverlay = document.getElementById("loadingOverlay");
+  loadingOverlay.style.display = "none"; // скрываем overlay после загрузки
+  startGame(); // запускаем игру после загрузки
+};
 const loadingOverlay = document.getElementById("loadingOverlay");
 const startBtn = document.getElementById("startBtn");
 
@@ -152,3 +157,4 @@ startBtn.addEventListener('click', startGame);
 window.onload = () => {
   checkOrientationBeforeLoading();
 };
+
