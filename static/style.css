@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #ffffff url("static/bg.jpeg") repeat-x;
+  background: #ffffff url("bg.jpeg") repeat-x;
   background-size: cover;
   font-family:Arial, Helvetica, sans-serif;
 }
