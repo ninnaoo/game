@@ -29,7 +29,7 @@ button{
 #player {
   display: flex;
   position: absolute;
-  bottom: 40%;
+  bottom: 30%;
   margin-left: 15%;
   width: 20px;
   height: 30%;
@@ -47,14 +47,14 @@ button{
 }
 
 @keyframes jump {
-  0% { bottom: 40%; }
+  0% { bottom: 30%; }
   50% { bottom: 80%; }
-  100% { bottom: 40%; }
+  100% { bottom: 30%; }
 }
 
 .obstacle {
   position: absolute;
-  bottom: 40%;
+  bottom: 30%;
   right: -100px;
   height: 60px;
   animation: moveObstacle 2s linear forwards;
