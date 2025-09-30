@@ -1,5 +1,5 @@
 window.onload = () => {
-  const loadingOverlay = document.getElementById("loading");
+  const loading = document.getElementById("loading");
   loading.style.display = "none"; // скрываем overlay
 };
 const loadingOverlay = document.getElementById("loadingOverlay");
@@ -156,5 +156,6 @@ startBtn.addEventListener('click', startGame);
 window.onload = () => {
   checkOrientationBeforeLoading();
 };
+
 
 
