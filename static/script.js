@@ -1,6 +1,4 @@
-window.onload = () => {
-  checkOrientationBeforeLoading()
-};
+
 const loading = document.getElementById("loading");
 const loadingOverlay = document.getElementById("loadingOverlay");
 const startBtn = document.getElementById("startBtn");
@@ -157,6 +155,7 @@ startBtn.addEventListener('click', startGame);
 window.onload = () => {
   checkOrientationBeforeLoading();
 };
+
 
 
 
