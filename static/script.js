@@ -18,25 +18,6 @@ let gameOver = false;
 const finishScore = 16;
 let gameStarted = false;
 
-// проверка ориентации в реальном времени
-function checkOrientation() {
-  if (window.innerWidth > window.innerHeight) {
-    rotateOverlay.style.display = 'none';
-    if (gameStarted) gameContainer.style.display = 'block';
-  } else {
-    rotateOverlay.style.display = 'flex';
-    gameContainer.style.display = 'none';
-  }
-}
-window.addEventListener('resize', checkOrientation);
-window.addEventListener('orientationchange', checkOrientation);
-
-// музыка после клика
-document.body.addEventListener("click", () => {
-  music.muted = false;
-  music.play();
-}, { once: true });
-
 // прыжок
 function jump() {
   if (!player.classList.contains("jump")) {
@@ -46,6 +27,48 @@ function jump() {
 }
 document.body.addEventListener("keydown", e => { if (e.code === "Space") jump(); });
 document.body.addEventListener("touchstart", jump);
+
+// музыка после клика
+document.body.addEventListener("click", () => {
+  music.muted = false;
+  music.play();
+}, { once: true });
+
+// проверка ориентации ДО загрузки
+function checkOrientationBeforeLoading() {
+  if (window.innerWidth > window.innerHeight) {
+    // горизонтально → показываем загрузку
+    rotateOverlay.style.display = 'none';
+    loadingOverlay.style.display = 'flex';
+  } else {
+    // вертикально → показываем просьбу повернуть
+    rotateOverlay.style.display = 'flex';
+    loadingOverlay.style.display = 'none';
+  }
+}
+
+// проверка ориентации в реальном времени после старта игры
+function checkOrientationDuringGame() {
+  if (!gameStarted) return;
+  if (window.innerWidth > window.innerHeight) {
+    rotateOverlay.style.display = 'none';
+    gameContainer.style.display = 'block';
+  } else {
+    rotateOverlay.style.display = 'flex';
+    gameContainer.style.display = 'none';
+  }
+}
+
+// запускаем проверку ДО загрузки
+checkOrientationBeforeLoading();
+window.addEventListener('resize', () => {
+  checkOrientationBeforeLoading();
+  checkOrientationDuringGame();
+});
+window.addEventListener('orientationchange', () => {
+  checkOrientationBeforeLoading();
+  checkOrientationDuringGame();
+});
 
 // старт игры
 function startGame() {
@@ -57,14 +80,14 @@ function startGame() {
   message.style.display = "none";
   restartBtn.style.display = "none";
 
-    document.querySelectorAll(".obstacle").forEach(o => o.remove());
-    spawnGroup(2, 1100); // создаём 2 объекта с интервалом 0.3 сек
-  spawnObstacle();
+  // удалить старые препятствия
+  document.querySelectorAll(".obstacle").forEach(o => o.remove());
 
-  gameContainer.style.display = 'block';
+  // скрываем загрузку
   loadingOverlay.style.display = 'none';
+  gameContainer.style.display = 'block';
 
-  checkOrientation(); // проверка ориентации сразу
+  spawnGroup(2, 1000);
   spawnObstacle();
 }
 
@@ -73,13 +96,12 @@ function spawnGroup(count, interval) {
     setTimeout(spawnObstacle, i * interval);
   }
 }
-// спавн препятствий
+
 function spawnObstacle() {
   if (gameOver) return;
   if (spawned >= finishScore) return;
 
   spawned++;
-
   const obstacle = document.createElement("img");
   obstacle.src = "static/star.png";
   obstacle.className = "obstacle";
@@ -88,7 +110,6 @@ function spawnObstacle() {
   const checkCollision = setInterval(() => {
     const playerRect = player.getBoundingClientRect();
     const obsRect = obstacle.getBoundingClientRect();
-
     if (
       playerRect.left < obsRect.right &&
       playerRect.right > obsRect.left &&
@@ -107,9 +128,7 @@ function spawnObstacle() {
     if (!gameOver) {
       score++;
       scoreEl.textContent = "Пройдено: " + score;
-
-      if (score >= finishScore) {
-        gameOver = true;
+      if (score >= finishScore) {gameOver = true;
         message.style.display = "flex";
         messageText.innerHTML = "🎂 Поздравляю с Днём Рождения! 🎉";
         restartBtn.style.display = "inline-block";
@@ -117,7 +136,6 @@ function spawnObstacle() {
     }
     obstacle.remove();
     clearInterval(checkCollision);
-
     if (!gameOver && spawned < finishScore) {
       setTimeout(spawnObstacle, 400 + Math.random() * 400);
     }
@@ -129,3 +147,8 @@ restartBtn.addEventListener("click", startGame);
 
 // кнопка «Начать игру»
 startBtn.addEventListener('click', startGame);
+
+// показываем загрузку после полной загрузки страницы, только если горизонтально
+window.onload = () => {
+  checkOrientationBeforeLoading();
+};
