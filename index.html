@@ -2,38 +2,38 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>!!</title>
+  <title>Чиби-раннер 🎂</title>
   <link rel="stylesheet" href="static/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-    <div id="loadingOverlay">
-      <p>Загрузка… ⏳</p>
-      <div id="progressBar">
-        <div id="progress"></div>
+<!-- Загрузочный экран -->
+<div id="loadingOverlay">
+  <p>Здесь представлены пара игр, приятного прохождения!</p>
+  <button id="startBtn">Начать игру</button>
+</div>
+
+<!-- Оверлей ориентации -->
+<div id="rotateOverlay">
+  <p>Пожалуйста, поверните телефон в горизонтальное положение 📱➡️</p>
+</div>
+
+<!-- Контейнер игры -->
+<div id="gameContainer" style="display:none;">
+  <div id="game">
+    <div id="player">
+      <img src="static/toji.png">
+    </div>
+    <div id="score">Пройдено: 0</div>
+    <div id="message" style="display:none;">
+      <p id="messageText"></p>
+      <button id="restartBtn" style="display:none;">Начать сначала</button>
     </div>
   </div>
-  <!-- Контейнер игры -->
-  <div id="gameContainer">
-    <div id="game">
-      <div id="player">
-        <img src="static/toji.png">
-      </div>
+  <audio id="bgMusic" src="static/Leaving Tonight - The Neighbourhood.mp3" autoplay loop muted></audio>
+</div>
 
-      <div id="score">Пройдено: 0</div>
-
-      <!-- Сообщение о победе/поражении и кнопка рестарта -->
-      <div id="message" style="display: none;">
-        <p id="messageText"></p>
-        <button id="restartBtn" style="display: none;">Начать сначала</button>
-      </div>
-    </div>
-
-    <!-- Музыка -->
-    <audio id="bgMusic" src="static/Leaving Tonight - The Neighbourhood.mp3" autoplay loop muted></audio>
-  </div>
-
-  <script src="static/script.js"></script>
+<script src="static/script.js"></script>
 </body>
 </html>
-
