@@ -1,5 +1,4 @@
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -134,16 +133,4 @@ button{
   height: 100%;
   background: rgb(255, 255, 255);
   border-radius: 10px;
-}
-@media screen and (orientation: portrait) {
-  .wrapper {
-    transform: rotate(90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
 }
