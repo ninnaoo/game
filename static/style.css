@@ -135,7 +135,7 @@ button{
   border-radius: 10px;
 }
 @media screen and (orientation: portrait) {
-  body {
+  .wrapper {
     transform: rotate(90deg);
     transform-origin: left top;
     width: 100vh;
