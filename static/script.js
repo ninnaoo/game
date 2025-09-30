@@ -1,8 +1,5 @@
-window.onload = () => {
-  const loadingOverlay = document.getElementById("loadingOverlay");
-  loadingOverlay.style.display = "none"; // скрываем overlay
-};
-
+const loadingOverlay = document.getElementById("loadingOverlay");
+const startBtn = document.getElementById("startBtn");
 
 const game = document.getElementById("game");
 const player = document.getElementById("player");
@@ -19,6 +16,20 @@ let score = 0;
 let spawned = 0;
 let gameOver = false;
 const finishScore = 16;
+let gameStarted = false;
+
+// проверка ориентации в реальном времени
+function checkOrientation() {
+  if (window.innerWidth > window.innerHeight) {
+    rotateOverlay.style.display = 'none';
+    if (gameStarted) gameContainer.style.display = 'block';
+  } else {
+    rotateOverlay.style.display = 'flex';
+    gameContainer.style.display = 'none';
+  }
+}
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
 
 // музыка после клика
 document.body.addEventListener("click", () => {
@@ -33,14 +44,12 @@ function jump() {
     setTimeout(() => player.classList.remove("jump"), 600);
   }
 }
-
-document.body.addEventListener("keydown", e => {
-  if (e.code === "Space") jump();
-});
+document.body.addEventListener("keydown", e => { if (e.code === "Space") jump(); });
 document.body.addEventListener("touchstart", jump);
 
 // старт игры
 function startGame() {
+  gameStarted = true;
   score = 0;
   spawned = 0;
   gameOver = false;
@@ -48,17 +57,22 @@ function startGame() {
   message.style.display = "none";
   restartBtn.style.display = "none";
 
-  // удалить все старые препятствия
-  document.querySelectorAll(".obstacle").forEach(o => o.remove());
-    spawnGroup(2, 1000); // создаём 2 объекта с интервалом 0.3 сек
+    document.querySelectorAll(".obstacle").forEach(o => o.remove());
+    spawnGroup(2, 1100); // создаём 2 объекта с интервалом 0.3 сек
+  spawnObstacle();
+
+  gameContainer.style.display = 'block';
+  loadingOverlay.style.display = 'none';
+
+  checkOrientation(); // проверка ориентации сразу
   spawnObstacle();
 }
+
 function spawnGroup(count, interval) {
   for (let i = 0; i < count; i++) {
     setTimeout(spawnObstacle, i * interval);
   }
 }
-
 // спавн препятствий
 function spawnObstacle() {
   if (gameOver) return;
@@ -110,7 +124,8 @@ function spawnObstacle() {
   });
 }
 
+// кнопка рестарта
 restartBtn.addEventListener("click", startGame);
 
-// старт игры сразу при загрузке
-startGame();
+// кнопка «Начать игру»
+startBtn.addEventListener('click', startGame);
