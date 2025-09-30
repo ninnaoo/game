@@ -5,10 +5,17 @@ body {
   background: #ffffff url("../static/bg.jpeg") repeat-x;
   background-size: cover;
   font-family:Arial, Helvetica, sans-serif;
-  
+  overflow: hidden;
 };
 .wrapper{
-  transform: rotate(90deg) translate(-50% -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vh;   /* ширина = высота экрана */
+  height: 100vw;  /* высота = ширина экрана */
+  transform: translate(-50%, -50%) rotate(90deg);
+  transform-origin: center center;
+  background: #ffffff url("../static/bg.jpeg") repeat-x;
 p{
   font-size: 15px;
   margin: 0px
@@ -19,6 +26,7 @@ button{
   font-size: 15px;
 }
 #gameContainer {
+  position: relative;
   width: 100%;
   height: 100%;
 }
