@@ -1,5 +1,7 @@
-
-const loading = document.getElementById("loading");
+window.onload = () => {
+  const loading = document.getElementById("loading");
+  loading.style.display = "none"; // скрываем overlay
+};
 const loadingOverlay = document.getElementById("loadingOverlay");
 const startBtn = document.getElementById("startBtn");
 
@@ -19,6 +21,8 @@ let spawned = 0;
 let gameOver = false;
 const finishScore = 16;
 let gameStarted = false;
+
+
 
 // прыжок
 function jump() {
@@ -40,7 +44,6 @@ document.body.addEventListener("click", () => {
 function checkOrientationBeforeLoading() {
   if (window.innerWidth > window.innerHeight) {
     // горизонтально → показываем загрузку
-    loading.style.display = "none"; // скрываем overlay
     rotateOverlay.style.display = 'none';
     loadingOverlay.style.display = 'flex';
   } else {
@@ -152,11 +155,3 @@ restartBtn.addEventListener("click", startGame);
 startBtn.addEventListener('click', startGame);
 
 // показываем загрузку после полной загрузки страницы, только если горизонтально
-window.onload = () => {
-  checkOrientationBeforeLoading();
-};
-
-
-
-
-
