@@ -136,7 +136,7 @@ function spawnObstacle() {
       scoreEl.textContent = "Пройдено: " + score;
       if (score >= finishScore) {gameOver = true;
         message.style.display = "flex";
-        messageText.innerHTML = "тут будет текст поздравления :)";
+        messageText.innerHTML = "<div class='gift'>с праздником! желаю много денег, стабильную менталку и найти шикарную работу<div class='pictures'><img class='picture' src='static/kitty.jpg'><img class='picture' src='static/digit.jpg'></div></div>";
         restartBtn.style.display = "inline-block";
       }
     }
@@ -155,4 +155,5 @@ restartBtn.addEventListener("click", startGame);
 startBtn.addEventListener('click', startGame);
 
 // показываем загрузку после полной загрузки страницы, только если горизонтально
+
 
